@@ -106,13 +106,12 @@ set.seed(1)
 roundingdown <- TRUE
 
 # init basic vars
-samplesize <-1000
+samplesize <-10000
 type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
-c(seq(1,100,1),10000)
-for (g in c(seq(1,10,1),100,500,1000,10000)){
+for (g in c(seq(1,10,1),100,500,1000)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
@@ -173,12 +172,12 @@ title(main="type one error rate with optional stopping and rounding down")
 set.seed(1)
 
 # init basic vars
-samplesize <-1000
+samplesize <-10000
 type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
-for (g in c(seq(1,10,1),100,500,1000,10000) ){
+for (g in c(seq(1,10,1),100,500,1000)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
@@ -225,12 +224,12 @@ set.seed(1)
 roundingdown <- FALSE
 
 # init basic vars
-samplesize <-1000
+samplesize <-10000
 type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
-for (g in c(seq(1,10,1),100,500,1000,10000) ){
+for (g in c(seq(1,10,1),100,500,1000)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
