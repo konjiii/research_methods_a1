@@ -111,7 +111,6 @@ type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
-c(seq(1,100,1),10000)
 for (g in c(seq(1,10,1),100,500,1000,10000)){
   #init counters
   type_one_error_counter <- 0
