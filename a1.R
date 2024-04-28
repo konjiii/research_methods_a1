@@ -85,6 +85,9 @@ abline(h=0.05, col = "red", lty=2) #setting the p-value boundary
 #third plot code
 #sequential testing and rounding down p-values
 
+# set seed
+set.seed(1)
+
 pvalue_list <- c()
 # vector with the heights
 height_nl <- rnorm(1, 177, 10) #the std for nl/mne is 9.7cm rounded up to 10cm
