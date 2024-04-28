@@ -201,6 +201,9 @@ for (g in c(seq(1,10,1),100,500,1000)){
       if (i == samplesize && out$p.value<0.05){
         good_test_counter <- good_test_counter + 1
       }
+      else {
+        type_one_error_counter <- type_one_error_counter + 1
+      }
     }
     
   }
