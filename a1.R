@@ -10,7 +10,7 @@ type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
-for (g in c(seq(1,10,2),100)){
+for (g in c(seq(1,10,1), 20, 50, 100, 200, 1000)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
@@ -69,7 +69,7 @@ type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
-for (g in c(seq(1,10,2),100)){
+for (g in c(seq(1,10,1), 20, 50, 100, 200, 1000)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
@@ -133,7 +133,7 @@ amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
 
-for (g in c(seq(1,10,2),100)){
+for (g in c(seq(1,10,1), 20, 50, 100, 200, 1000)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
