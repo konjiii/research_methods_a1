@@ -30,7 +30,7 @@ repeat {
 sample_size <- 2:(length(p-values)+1)
 plot(sample_size, p-values, type = "l")
 abline(h=0.05, col = "red", lty=2) #setting the p-value boundary
-title(main="p-values per sample size ")
+title(main="p-values per sample size with optional stopping")
 
 # second plot code
 # showing the first plot is wrong
@@ -60,7 +60,7 @@ for (i in 1:6000) {
 sample_size <- 2:(length(p-values)+1)
 plot(sample_size, p-values, type = "l")
 abline(h=0.05, col = "red", lty=2) #setting the p-value boundary
-title(main="")
+title(main="p-values per sample size without optional stopping")
 
 #third plot code
 #sequential testing and rounding down p-values
@@ -93,6 +93,7 @@ repeat {
 sample_size <- 2:(length(p-values)+1)
 plot(sample_size, p-values, type = "l")
 abline(h=0.05, col = "red", lty=2) #setting the p-value boundary
+title(main="p-values per sample size with stopping and rounding down")
 
 
 #fourth plot code
@@ -161,6 +162,7 @@ for (g in seq(1, 10000, 100) ){
 
 # plot the type one error rates
 plot(amount_of_sequence_tests, type_one_error_rate, type = "l")
+title(main="type one error rate with optional stopping and rounding down")
 
 
 #fifth plot code
@@ -210,12 +212,16 @@ for (g in seq(1, 10000, 100) ){
 
 # plot the type one error rates
 plot(amount_of_sequence_tests, type_one_error_rate, type = "l")
+title(main="type one error rate without optional stopping")
 
-#fifth plot code
-#Type one error rate sequential testing (base case)
+#sixth plot code
+#Type one error rate of sequential testing without rounding down
 
 # set seed
 set.seed(1)
+
+# to toggle the rounding down QRP on(TRUE) or off(FALSE)
+roundingdown <- FALSE
 
 # init basic vars
 samplesize <-1000
@@ -244,11 +250,24 @@ for (g in seq(1, 10000, 100) ){
       
       # perform the t-test
       out <- t.test(height_nl, height_mne)
-      if (i == samplesize && out$p.value>=0.5){
-        good_test_counter <- good_test_counter + 1
+      if (roundingdown) {
+        round_out <- floor(out$p.value * 10)/ 10 #rounds down the p-values of out
+        # if the p value is under 0.05 stop the test
+        if (round_out < 0.05){
+          type_one_error_counter <- type_one_error_counter + 1
+          break
+        }
+        else if (i == samplesize){
+          good_test_counter <- good_test_counter + 1
+        }
       }
-      else {
+      # if the p value is under 0.05 stop the test
+      else if (out$p.value<0.5){
         type_one_error_counter <- type_one_error_counter + 1
+        break
+      }
+      else if (i == samplesize){
+        good_test_counter <- good_test_counter + 1
       }
     }
     
@@ -261,4 +280,5 @@ for (g in seq(1, 10000, 100) ){
 
 # plot the type one error rates
 plot(amount_of_sequence_tests, type_one_error_rate, type = "l")
+title(main="type one error rate with optional stopping")
 
