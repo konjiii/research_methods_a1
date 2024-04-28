@@ -10,7 +10,7 @@ type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
-for (g in c(seq(1,10,2),100,500)){
+for (g in c(seq(1,10,2),100)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
@@ -18,6 +18,8 @@ for (g in c(seq(1,10,2),100,500)){
   
   # loop for amount of tests
   for (i in 1:g){
+    
+    print(i)
     
     # vector with the heights
     height_nl <- rnorm(1, 177, 10) #the std for nl/mne is 9.7cm rounded up to 10cm
@@ -45,6 +47,8 @@ for (g in c(seq(1,10,2),100,500)){
   # append type one error rate to the list
   type_one_error_rate <- append(type_one_error_rate,error_rate)
 }
+print("error_rate:")
+print(error_rate)
 
 # plot the type one error rates
 plot(amount_of_sequence_tests, type_one_error_rate, type = "l")
@@ -60,12 +64,12 @@ set.seed(1)
 roundingdown <- FALSE
 
 # init basic vars
-samplesize <-100
+samplesize <-10000
 type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
-for (g in c(seq(1,10,2),100,500)){
+for (g in c(seq(1,10,2),100)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
@@ -73,6 +77,7 @@ for (g in c(seq(1,10,2),100,500)){
   
   # loop for amount of tests
   for (i in 1:g){
+    print(i)
     
     # vector with the heights
     height_nl <- rnorm(1, 177, 10) #the std for nl/mne is 9.7cm rounded up to 10cm
@@ -104,6 +109,8 @@ for (g in c(seq(1,10,2),100,500)){
   # append type one error rate to the list
   type_one_error_rate <- append(type_one_error_rate,error_rate)
 }
+print("error_rate:")
+print(error_rate)
 
 # plot the type one error rates
 plot(amount_of_sequence_tests, type_one_error_rate, type = "l")
@@ -126,7 +133,7 @@ amount_of_sequence_tests <- c()
 
 #for amount of sequence tests
 
-for (g in c(seq(1,10,2),100,500)){
+for (g in c(seq(1,10,2),100)){
   #init counters
   type_one_error_counter <- 0
   good_test_counter <- 0
@@ -134,6 +141,7 @@ for (g in c(seq(1,10,2),100,500)){
   
   # loop for amount of tests
   for (i in 1:g){
+    print(i)
     
     # vector with the heights
     height_nl <- rnorm(1, 177, 10) #the std for nl/mne is 9.7cm rounded up to 10cm
@@ -165,6 +173,8 @@ for (g in c(seq(1,10,2),100,500)){
   # append type one error rate to the list
   type_one_error_rate <- append(type_one_error_rate,error_rate)
 }
+print("error_rate:")
+print(error_rate)
 
 # plot the type one error rates
 plot(amount_of_sequence_tests, type_one_error_rate, type = "l")
