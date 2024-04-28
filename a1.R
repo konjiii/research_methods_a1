@@ -60,7 +60,7 @@ set.seed(1)
 roundingdown <- FALSE
 
 # init basic vars
-samplesize <-10000
+samplesize <-100
 type_one_error_rate <- c()
 amount_of_sequence_tests <- c()
 
@@ -86,19 +86,11 @@ for (g in c(seq(1,10,1),100,500,1000)){
       
       # perform the t-test
       out <- t.test(height_nl, height_mne)
-      if (roundingdown) {
-        round_out <- floor(out$p.value * 10)/ 10 #rounds down the p_values of out
-        # if the p value is under 0.05 stop the test
-        if (round_out < 0.05){
-          type_one_error_counter <- type_one_error_counter + 1
-          break
-        }
-        else if (i == samplesize){
-          good_test_counter <- good_test_counter + 1
-        }
-      }
+      # if roundingdown is TRUE round down the p_values with floor(out$p.value *10)/ 10
+      round_out <- if (roundingdown) floor(out$p.value * 10)/ 10 else out$p.value
+      
       # if the p value is under 0.05 stop the test
-      else if (out$p.value<0.05){
+      if (round_out < 0.05){
         type_one_error_counter <- type_one_error_counter + 1
         break
       }
@@ -106,7 +98,6 @@ for (g in c(seq(1,10,1),100,500,1000)){
         good_test_counter <- good_test_counter + 1
       }
     }
-    
   }
   #calculate error_rate
   error_rate <- type_one_error_counter/(type_one_error_counter+good_test_counter)
@@ -156,19 +147,11 @@ for (g in c(seq(1,10,1),100,500,1000)){
       
       # perform the t-test
       out <- t.test(height_nl, height_mne)
-      if (roundingdown) {
-        round_out <- floor(out$p.value * 10)/ 10 #rounds down the p_values of out
-        # if the p value is under 0.05 stop the test
-        if (round_out < 0.05){
-          type_one_error_counter <- type_one_error_counter + 1
-          break
-        }
-        else if (i == samplesize){
-          good_test_counter <- good_test_counter + 1
-        }
-      }
+      # if roundingdown is TRUE round down the p_values with floor(out$p.value *10)/ 10
+      round_out <- if (roundingdown) floor(out$p.value * 10)/ 10 else out$p.value
+      
       # if the p value is under 0.05 stop the test
-      else if (out$p.value<0.05){
+      if (round_out < 0.05){
         type_one_error_counter <- type_one_error_counter + 1
         break
       }
@@ -176,7 +159,6 @@ for (g in c(seq(1,10,1),100,500,1000)){
         good_test_counter <- good_test_counter + 1
       }
     }
-    
   }
   #calculate error_rate
   error_rate <- type_one_error_counter/(type_one_error_counter+good_test_counter)
