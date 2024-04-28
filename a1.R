@@ -1,7 +1,7 @@
 # first plot code
 # questionable practice
 # vector to store the p values
-pvalues <- c()
+p-values <- c()
 
 # set seed
 set.seed(1)
@@ -18,8 +18,8 @@ repeat {
   
   # perform the t-test
   out <- t.test(height_nl, height_mne)
-  # append current p value to pvalues
-  pvalues <- append(pvalues, out$p.value)
+  # append current p value to p-values
+  p-values <- append(p-values, out$p.value)
   # if the p value is under 0.05 stop the test
   if (out$p.value < 0.05){
     break
@@ -27,14 +27,15 @@ repeat {
 }
 
 # plot the p values
-sample_size <- 2:(length(pvalues)+1)
-plot(sample_size, pvalues, type = "l")
+sample_size <- 2:(length(p-values)+1)
+plot(sample_size, p-values, type = "l")
 abline(h=0.05, col = "red", lty=2) #setting the p-value boundary
+title(main="p-values per sample size ")
 
 # second plot code
 # showing the first plot is wrong
 # vector to store the p values
-pvalues <- c()
+p-values <- c()
 
 # set seed
 set.seed(1)
@@ -51,14 +52,15 @@ for (i in 1:6000) {
   
   # perform the t-test
   out <- t.test(height_nl, height_mne)
-  # append current p value to pvalues
-  pvalues <- append(pvalues, out$p.value)
+  # append current p value to p-values
+  p-values <- append(p-values, out$p.value)
 }
 
 # plot the p values
-sample_size <- 2:(length(pvalues)+1)
-plot(sample_size, pvalues, type = "l")
+sample_size <- 2:(length(p-values)+1)
+plot(sample_size, p-values, type = "l")
 abline(h=0.05, col = "red", lty=2) #setting the p-value boundary
+title(main="")
 
 #third plot code
 #sequential testing and rounding down p-values
@@ -66,7 +68,7 @@ abline(h=0.05, col = "red", lty=2) #setting the p-value boundary
 # set seed
 set.seed(1)
 
-pvalues <- c()
+p-values <- c()
 # vector with the heights
 height_nl <- rnorm(1, 177, 10) #the std for nl/mne is 9.7cm rounded up to 10cm
 height_mne <- rnorm(1, 177, 10) #the mean for nl is 177.1cm and for mne is 176.6 so rounded for both is 177cm
@@ -80,16 +82,16 @@ repeat {
   # perform the t-test
   out <- t.test(height_nl, height_mne)
   round_out <- floor(out$p.value * 10)/ 10 #rounds down the p-values of out
-  # append current p value to pvalues
-  pvalues <- append(pvalues,round_out)
+  # append current p value to p-values
+  p-values <- append(p-values,round_out)
   # if the p value is under 0.05 stop the test
   if (round_out < 0.05){
     break
   }
 }
 # plot the p values
-sample_size <- 2:(length(pvalues)+1)
-plot(sample_size, pvalues, type = "l")
+sample_size <- 2:(length(p-values)+1)
+plot(sample_size, p-values, type = "l")
 abline(h=0.05, col = "red", lty=2) #setting the p-value boundary
 
 
